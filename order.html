@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Request a 3D Model - Magical Tales</title>
+    <link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+    <header>
+        <h1>Request a 3D Model</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="services.html">Our Services</a></li>
+                <li><a href="order.html">Request a 3D Model</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section>
+        <h2>Send Us Your Reference Images</h2>
+        <p>Please fill out the form below to request a custom 3D model. Upload your reference images and provide a brief description of what you need.</p>
+        
+        <form action="https://formspree.io/f/xvgpyonq" method="POST" enctype="multipart/form-data">
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" required>
+
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="description">Description</label>
+            <textarea id="description" name="description" rows="5" required></textarea>
+
+            <label for="images">Upload Reference Images</label>
+            <input type="file" id="images" name="images" accept="image/*" multiple required>
+
+            <button type="submit">Submit Request</button>
+        </form>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Magical Tales 3D Models. All rights reserved.</p>
+    </footer>
+</body>
+</html>
