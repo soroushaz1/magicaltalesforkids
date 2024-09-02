@@ -5,44 +5,111 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Request a 3D Model - Magical Tales</title>
     <link rel="stylesheet" href="assets/styles.css">
+    <style>
+        .farsi { display: none; }
+    </style>
 </head>
 <body>
     <header>
-        <h1>Request a 3D Model</h1>
+        <h1>
+            <span class="english">Request a 3D Model</span>
+            <span class="farsi">درخواست مدل سه‌بعدی</span>
+        </h1>
         <nav>
             <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="services.html">Our Services</a></li>
-                <li><a href="order.html">Request a 3D Model</a></li>
-                <li><a href="about.html">About</a></li>
-                <li><a href="contact.html">Contact</a></li>
+                <li><a href="index.html" class="english">Home</a><a href="index.html" class="farsi">خانه</a></li>
+                <li><a href="services.html" class="english">Our Services</a><a href="services.html" class="farsi">خدمات ما</a></li>
+                <li><a href="order.html" class="english">Request a 3D Model</a><a href="order.html" class="farsi">درخواست مدل سه‌بعدی</a></li>
+                <li><a href="about.html" class="english">About</a><a href="about.html" class="farsi">درباره ما</a></li>
+                <li><a href="contact.html" class="english">Contact</a><a href="contact.html" class="farsi">تماس با ما</a></li>
             </ul>
         </nav>
+        <button id="language-toggle">فارسی</button>
     </header>
 
     <section>
-        <h2>Send Us Your Reference Images</h2>
-        <p>Please fill out the form below to request a custom 3D model. Upload your reference images and provide a brief description of what you need.</p>
+        <h2>
+            <span class="english">Send Us Your Reference Images</span>
+            <span class="farsi">تصاویر مرجع خود را ارسال کنید</span>
+        </h2>
+        <p>
+            <span class="english">Please fill out the form below to request a custom 3D model. Upload your reference images and provide a brief description of what you need.</span>
+            <span class="farsi">لطفاً فرم زیر را پر کنید تا یک مدل سه‌بعدی سفارشی درخواست کنید. تصاویر مرجع خود را بارگذاری کنید و توضیح مختصری از آنچه نیاز دارید ارائه دهید.</span>
+        </p>
         
-        <form action="https://formspree.io/f/{your_form_id}" method="POST" enctype="multipart/form-data">
-            <label for="name">Name</label>
+        <form action="https://formspree.io/f/xvgpyonq" method="POST" enctype="multipart/form-data">
+            <label for="name">
+                <span class="english">Name</span>
+                <span class="farsi">نام</span>
+            </label>
             <input type="text" id="name" name="name" required>
 
-            <label for="email">Email</label>
+            <label for="email">
+                <span class="english">Email</span>
+                <span class="farsi">ایمیل</span>
+            </label>
             <input type="email" id="email" name="email" required>
 
-            <label for="description">Description</label>
+            <label for="description">
+                <span class="english">Description</span>
+                <span class="farsi">توضیحات</span>
+            </label>
             <textarea id="description" name="description" rows="5" required></textarea>
 
-            <label for="images">Upload Reference Images</label>
+            <label for="images">
+                <span class="english">Upload Reference Images</span>
+                <span class="farsi">بارگذاری تصاویر مرجع</span>
+            </label>
             <input type="file" id="images" name="images" accept="image/*" multiple required>
 
-            <button type="submit">Submit Request</button>
+            <button type="submit">
+                <span class="english">Submit Request</span>
+                <span class="farsi">ارسال درخواست</span>
+            </button>
         </form>
     </section>
 
     <footer>
-        <p>&copy; 2024 Magical Tales 3D Models. All rights reserved.</p>
+        <p>
+            <span class="english">&copy; 2024 Magical Tales 3D Models. All rights reserved.</span>
+            <span class="farsi">2024© تمامی حقوق برای مدل‌های سه‌بعدی قصه‌های جادویی محفوظ است.</span>
+        </p>
     </footer>
+
+    <script>
+        // Function to set the language based on the user's preference
+        function setLanguage(language) {
+            const englishTexts = document.querySelectorAll('.english');
+            const farsiTexts = document.querySelectorAll('.farsi');
+            const toggleButton = document.getElementById('language-toggle');
+    
+            if (language === 'farsi') {
+                englishTexts.forEach(text => text.style.display = 'none');
+                farsiTexts.forEach(text => text.style.display = 'inline');
+                toggleButton.textContent = 'English';
+            } else {
+                englishTexts.forEach(text => text.style.display = 'inline');
+                farsiTexts.forEach(text => text.style.display = 'none');
+                toggleButton.textContent = 'فارسی';
+            }
+    
+            // Save the preference in localStorage
+            localStorage.setItem('preferredLanguage', language);
+        }
+    
+        // Event listener for the toggle button
+        document.getElementById('language-toggle').addEventListener('click', () => {
+            const currentLanguage = localStorage.getItem('preferredLanguage') || 'english';
+            const newLanguage = currentLanguage === 'english' ? 'farsi' : 'english';
+            setLanguage(newLanguage);
+        });
+    
+        // On page load, apply the saved language preference
+        document.addEventListener('DOMContentLoaded', () => {
+            const savedLanguage = localStorage.getItem('preferredLanguage') || 'english';
+            setLanguage(savedLanguage);
+        });
+    </script>
+    
 </body>
 </html>

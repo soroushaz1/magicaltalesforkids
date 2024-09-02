@@ -5,36 +5,99 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Our Services - Magical Tales 3D Models</title>
     <link rel="stylesheet" href="assets/styles.css">
+    <style>
+        .farsi { display: none; }
+    </style>
 </head>
 <body>
     <header>
-        <h1>Our Services</h1>
+        <h1>
+            <span class="english">Our Services</span>
+            <span class="farsi">خدمات ما</span>
+        </h1>
         <nav>
             <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="services.html">Our Services</a></li>
-                <li><a href="order.html">Request a 3D Model</a></li>
-                <li><a href="about.html">About</a></li>
-                <li><a href="contact.html">Contact</a></li>
+                <li><a href="index.html" class="english">Home</a><a href="index.html" class="farsi">خانه</a></li>
+                <li><a href="services.html" class="english">Our Services</a><a href="services.html" class="farsi">خدمات ما</a></li>
+                <li><a href="order.html" class="english">Request a 3D Model</a><a href="order.html" class="farsi">درخواست مدل سه‌بعدی</a></li>
+                <li><a href="about.html" class="english">About</a><a href="about.html" class="farsi">درباره ما</a></li>
+                <li><a href="contact.html" class="english">Contact</a><a href="contact.html" class="farsi">تماس با ما</a></li>
             </ul>
         </nav>
+        <button id="language-toggle">فارسی</button>
     </header>
 
     <section>
-        <h2>What We Offer</h2>
-        <p>At Magical Tales, we offer custom 3D modeling services. Whether it's a simple object or a complex structure, we can create a high-quality 3D model based on your reference images.</p>
+        <h2>
+            <span class="english">What We Offer</span>
+            <span class="farsi">خدمات ما</span>
+        </h2>
+        <p>
+            <span class="english">At Magical Tales, we offer custom 3D modeling services. Whether it's a simple object or a complex structure, we can create a high-quality 3D model based on your reference images.</span>
+            <span class="farsi">در مدل‌سازی قصه‌های جادویی، ما خدمات مدل‌سازی سه‌بعدی سفارشی ارائه می‌دهیم. چه یک شیء ساده باشد و چه یک ساختار پیچیده، می‌توانیم یک مدل سه‌بعدی با کیفیت بالا بر اساس تصاویر مرجع شما ایجاد کنیم.</span>
+        </p>
 
-        <h2>How It Works</h2>
+        <h2>
+            <span class="english">How It Works</span>
+            <span class="farsi">چگونه کار می‌کند</span>
+        </h2>
         <ol>
-            <li><strong>Submit Your Reference Images:</strong> Use our order form to upload your images and describe the 3D model you need.</li>
-            <li><strong>Get a Quote:</strong> We'll review your request and provide you with a fair quote based on the complexity of the model.</li>
-            <li><strong>3D Modeling:</strong> Once you approve the quote, we'll start working on your 3D model.</li>
-            <li><strong>Receive Your Model:</strong> When the model is complete, we'll send you the files in your preferred format.</li>
+            <li><span class="english"><strong>Submit Your Reference Images:</strong> Use our order form to upload your images and describe the 3D model you need.</span>
+                <span class="farsi"><strong>تصاویر مرجع خود را ارسال کنید:</strong> از فرم سفارش ما برای بارگذاری تصاویر خود استفاده کنید و مدل سه‌بعدی مورد نیاز خود را توصیف کنید.</span>
+            </li>
+            <li><span class="english"><strong>Get a Quote:</strong> We'll review your request and provide you with a fair quote based on the complexity of the model.</span>
+                <span class="farsi"><strong>دریافت قیمت:</strong> ما درخواست شما را بررسی می‌کنیم و بر اساس پیچیدگی مدل به شما قیمت منصفانه‌ای ارائه می‌دهیم.</span>
+            </li>
+            <li><span class="english"><strong>3D Modeling:</strong> Once you approve the quote, we'll start working on your 3D model.</span>
+                <span class="farsi"><strong>مدل‌سازی سه‌بعدی:</strong> پس از تأیید قیمت توسط شما، ما کار بر روی مدل سه‌بعدی شما را آغاز می‌کنیم.</span>
+            </li>
+            <li><span class="english"><strong>Receive Your Model:</strong> When the model is complete, we'll send you the files in your preferred format.</span>
+                <span class="farsi"><strong>دریافت مدل:</strong> هنگامی که مدل کامل شد، فایل‌ها را در فرمت مورد نظر شما ارسال می‌کنیم.</span>
+            </li>
         </ol>
     </section>
 
     <footer>
-        <p>&copy; 2024 Magical Tales 3D Models. All rights reserved.</p>
+        <p>
+            <span class="english">&copy; 2024 Magical Tales 3D Models. All rights reserved.</span>
+            <span class="farsi">2024© تمامی حقوق برای مدل‌های سه‌بعدی قصه‌های جادویی محفوظ است.</span>
+        </p>
     </footer>
+
+    <script>
+        // Function to set the language based on the user's preference
+        function setLanguage(language) {
+            const englishTexts = document.querySelectorAll('.english');
+            const farsiTexts = document.querySelectorAll('.farsi');
+            const toggleButton = document.getElementById('language-toggle');
+    
+            if (language === 'farsi') {
+                englishTexts.forEach(text => text.style.display = 'none');
+                farsiTexts.forEach(text => text.style.display = 'inline');
+                toggleButton.textContent = 'English';
+            } else {
+                englishTexts.forEach(text => text.style.display = 'inline');
+                farsiTexts.forEach(text => text.style.display = 'none');
+                toggleButton.textContent = 'فارسی';
+            }
+    
+            // Save the preference in localStorage
+            localStorage.setItem('preferredLanguage', language);
+        }
+    
+        // Event listener for the toggle button
+        document.getElementById('language-toggle').addEventListener('click', () => {
+            const currentLanguage = localStorage.getItem('preferredLanguage') || 'english';
+            const newLanguage = currentLanguage === 'english' ? 'farsi' : 'english';
+            setLanguage(newLanguage);
+        });
+    
+        // On page load, apply the saved language preference
+        document.addEventListener('DOMContentLoaded', () => {
+            const savedLanguage = localStorage.getItem('preferredLanguage') || 'english';
+            setLanguage(savedLanguage);
+        });
+    </script>
+    
 </body>
 </html>

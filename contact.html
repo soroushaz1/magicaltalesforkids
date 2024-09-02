@@ -5,41 +5,105 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contact Us - Magical Tales 3D Models</title>
     <link rel="stylesheet" href="assets/styles.css">
+    <style>
+        .farsi { display: none; }
+    </style>
 </head>
 <body>
     <header>
-        <h1>Contact Us</h1>
+        <h1>
+            <span class="english">Contact Us</span>
+            <span class="farsi">تماس با ما</span>
+        </h1>
         <nav>
             <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="services.html">Our Services</a></li>
-                <li><a href="order.html">Request a 3D Model</a></li>
-                <li><a href="about.html">About</a></li>
-                <li><a href="contact.html">Contact</a></li>
+                <li><a href="index.html" class="english">Home</a><a href="index.html" class="farsi">خانه</a></li>
+                <li><a href="services.html" class="english">Our Services</a><a href="services.html" class="farsi">خدمات ما</a></li>
+                <li><a href="order.html" class="english">Request a 3D Model</a><a href="order.html" class="farsi">درخواست مدل سه‌بعدی</a></li>
+                <li><a href="about.html" class="english">About</a><a href="about.html" class="farsi">درباره ما</a></li>
+                <li><a href="contact.html" class="english">Contact</a><a href="contact.html" class="farsi">تماس با ما</a></li>
             </ul>
         </nav>
+        <button id="language-toggle">فارسی</button>
     </header>
 
     <section>
-        <h2>We'd Love to Hear From You</h2>
-        <p>If you have any questions, suggestions, or just want to say hi, feel free to reach out using the form below.</p>
+        <h2>
+            <span class="english">We'd Love to Hear From You</span>
+            <span class="farsi">ما دوست داریم از شما بشنویم</span>
+        </h2>
+        <p>
+            <span class="english">If you have any questions, suggestions, or just want to say hi, feel free to reach out using the form below.</span>
+            <span class="farsi">اگر سؤالی، پیشنهادی دارید یا فقط می‌خواهید سلامی بگویید، از فرم زیر استفاده کنید تا با ما تماس بگیرید.</span>
+        </p>
         
         <form action="https://formspree.io/f/{your_form_id}" method="POST">
-            <label for="name">Name</label>
+            <label for="name">
+                <span class="english">Name</span>
+                <span class="farsi">نام</span>
+            </label>
             <input type="text" id="name" name="name" required>
 
-            <label for="email">Email</label>
+            <label for="email">
+                <span class="english">Email</span>
+                <span class="farsi">ایمیل</span>
+            </label>
             <input type="email" id="email" name="email" required>
 
-            <label for="message">Message</label>
+            <label for="message">
+                <span class="english">Message</span>
+                <span class="farsi">پیام</span>
+            </label>
             <textarea id="message" name="message" rows="5" required></textarea>
 
-            <button type="submit">Send Message</button>
+            <button type="submit">
+                <span class="english">Send Message</span>
+                <span class="farsi">ارسال پیام</span>
+            </button>
         </form>
     </section>
 
     <footer>
-        <p>&copy; 2024 Magical Tales 3D Models. All rights reserved.</p>
+        <p>
+            <span class="english">&copy; 2024 Magical Tales 3D Models. All rights reserved.</span>
+            <span class="farsi">2024© تمامی حقوق برای مدل‌های سه‌بعدی قصه‌های جادویی محفوظ است.</span>
+        </p>
     </footer>
+
+    <script>
+        // Function to set the language based on the user's preference
+        function setLanguage(language) {
+            const englishTexts = document.querySelectorAll('.english');
+            const farsiTexts = document.querySelectorAll('.farsi');
+            const toggleButton = document.getElementById('language-toggle');
+    
+            if (language === 'farsi') {
+                englishTexts.forEach(text => text.style.display = 'none');
+                farsiTexts.forEach(text => text.style.display = 'inline');
+                toggleButton.textContent = 'English';
+            } else {
+                englishTexts.forEach(text => text.style.display = 'inline');
+                farsiTexts.forEach(text => text.style.display = 'none');
+                toggleButton.textContent = 'فارسی';
+            }
+    
+            // Save the preference in localStorage
+            localStorage.setItem('preferredLanguage', language);
+        }
+    
+        // Event listener for the toggle button
+        document.getElementById('language-toggle').addEventListener('click', () => {
+            const currentLanguage = localStorage.getItem('preferredLanguage') || 'english';
+            const newLanguage = currentLanguage === 'english' ? 'farsi' : 'english';
+            setLanguage(newLanguage);
+        });
+    
+        // On page load, apply the saved language preference
+        document.addEventListener('DOMContentLoaded', () => {
+            const savedLanguage = localStorage.getItem('preferredLanguage') || 'english';
+            setLanguage(savedLanguage);
+        });
+    </script>
+    
 </body>
 </html>

@@ -5,29 +5,86 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Custom 3D Modeling Services - Magical Tales</title>
     <link rel="stylesheet" href="assets/styles.css">
+    <style>
+        .farsi { display: none; }
+    </style>
 </head>
 <body>
     <header>
-        <h1>Welcome to Magical Tales 3D Models</h1>
+        <h1>
+            <span class="english">Welcome to Magical Tales 3D Models</span>
+            <span class="farsi">به سایت مدل‌سازی سه‌بعدی قصه‌های جادویی خوش آمدید</span>
+        </h1>
         <nav>
             <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="services.html">Our Services</a></li>
-                <li><a href="order.html">Request a 3D Model</a></li>
-                <li><a href="about.html">About</a></li>
-                <li><a href="contact.html">Contact</a></li>
+                <li><a href="index.html" class="english">Home</a><a href="index.html" class="farsi">خانه</a></li>
+                <li><a href="services.html" class="english">Our Services</a><a href="services.html" class="farsi">خدمات ما</a></li>
+                <li><a href="order.html" class="english">Request a 3D Model</a><a href="order.html" class="farsi">درخواست مدل سه‌بعدی</a></li>
+                <li><a href="about.html" class="english">About</a><a href="about.html" class="farsi">درباره ما</a></li>
+                <li><a href="contact.html" class="english">Contact</a><a href="contact.html" class="farsi">تماس با ما</a></li>
             </ul>
         </nav>
+        <button id="language-toggle">فارسی</button>
     </header>
 
     <section>
-        <h2>Custom 3D Modeling Services</h2>
-        <p>Do you need a 3D model of an object? Send us your reference images, and we'll bring it to life in 3D. Perfect for games, animations, and 3D printing.</p>
-        <a href="order.html" class="button">Request a 3D Model</a>
+        <h2>
+            <span class="english">Custom 3D Modeling Services</span>
+            <span class="farsi">خدمات مدل‌سازی سه‌بعدی سفارشی</span>
+        </h2>
+        <p>
+            <span class="english">Do you need a 3D model of an object? Send us your reference images, and we'll bring it to life in 3D. Perfect for games, animations, and 3D printing.</span>
+            <span class="farsi">آیا به مدل سه‌بعدی یک شیء نیاز دارید؟ تصاویر مرجع خود را برای ما ارسال کنید تا آن را به صورت سه‌بعدی بازسازی کنیم. مناسب برای بازی‌ها، انیمیشن‌ها و چاپ سه‌بعدی.</span>
+        </p>
+        <a href="order.html" class="button english">Request a 3D Model</a>
+        <a href="order.html" class="button farsi">درخواست مدل سه‌بعدی</a>
     </section>
+    
 
     <footer>
-        <p>&copy; 2024 Magical Tales 3D Models. All rights reserved.</p>
+        <p>
+            <span class="english">&copy; 2024 Magical Tales 3D Models. All rights reserved.</span>
+            <span class="farsi">2024© تمامی حقوق برای مدل‌های سه‌بعدی قصه‌های جادویی محفوظ است.</span>
+        </p>
     </footer>
+
+    <script>
+        // Function to set the language based on the user's preference
+        function setLanguage(language) {
+            const englishTexts = document.querySelectorAll('.english');
+            const farsiTexts = document.querySelectorAll('.farsi');
+            const toggleButton = document.getElementById('language-toggle');
+    
+            if (language === 'farsi') {
+                englishTexts.forEach(text => text.style.display = 'none');
+                farsiTexts.forEach(text => text.style.display = 'inline');
+                toggleButton.textContent = 'English';
+            } else {
+                englishTexts.forEach(text => text.style.display = 'inline');
+                farsiTexts.forEach(text => text.style.display = 'none');
+                toggleButton.textContent = 'فارسی';
+            }
+    
+            // Save the preference in localStorage
+            localStorage.setItem('preferredLanguage', language);
+        }
+    
+        // Event listener for the toggle button
+        document.getElementById('language-toggle').addEventListener('click', () => {
+            const currentLanguage = localStorage.getItem('preferredLanguage') || 'english';
+            const newLanguage = currentLanguage === 'english' ? 'farsi' : 'english';
+            setLanguage(newLanguage);
+        });
+    
+        // On page load, apply the saved language preference
+        document.addEventListener('DOMContentLoaded', () => {
+            const savedLanguage = localStorage.getItem('preferredLanguage') || 'english';
+            setLanguage(savedLanguage);
+        });
+    </script>
+    
+    
+    
 </body>
+
 </html>
