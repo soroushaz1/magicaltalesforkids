@@ -36,23 +36,32 @@ section {
     border-radius: 8px;
 }
 
-.model-grid {
-    display: flex;
-    flex-wrap: wrap;
+label {
+    display: block;
+    margin-bottom: 10px;
 }
 
-.model-item {
-    margin: 10px;
+input[type="text"],
+input[type="email"],
+textarea {
+    width: 100%;
     padding: 10px;
-    background: #eee;
-    border-radius: 8px;
-    text-align: center;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
 }
 
-.model-item img {
-    max-width: 100%;
-    height: auto;
-    border-radius: 8px;
+button {
+    padding: 10px 15px;
+    background-color: #333;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #555;
 }
 
 footer {
