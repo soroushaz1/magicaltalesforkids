@@ -1,3 +1,4 @@
+/* General Body Styles */
 body {
     font-family: Arial, sans-serif;
     line-height: 1.6;
@@ -5,8 +6,10 @@ body {
     padding: 0;
     background-color: #f4f4f4;
     color: #333;
+    text-align: right;
 }
 
+/* Header Styles */
 header {
     background: #333;
     color: #fff;
@@ -14,6 +17,7 @@ header {
     text-align: center;
 }
 
+/* Navigation Styles */
 nav ul {
     list-style: none;
     padding: 0;
@@ -29,6 +33,7 @@ nav ul li a {
     text-decoration: none;
 }
 
+/* Section Styles */
 section {
     padding: 20px;
     margin: 20px;
@@ -36,11 +41,13 @@ section {
     border-radius: 8px;
 }
 
+/* Label Styles */
 label {
     display: block;
     margin-bottom: 10px;
 }
 
+/* Input and Textarea Styles */
 input[type="text"],
 input[type="email"],
 textarea {
@@ -51,6 +58,7 @@ textarea {
     border-radius: 5px;
 }
 
+/* Button Styles */
 button {
     padding: 10px 15px;
     background-color: #333;
@@ -64,6 +72,7 @@ button:hover {
     background-color: #555;
 }
 
+/* Footer Styles */
 footer {
     text-align: center;
     padding: 2px;
@@ -74,11 +83,18 @@ footer {
     bottom: 0;
 }
 
-/* Corrected CSS for Farsi text */
-.farsi {
-    direction: rtl !important;
-    text-align: right !important;
-    font-family: 'Arabic Typesetting', Arial, sans-serif !important;
+/* Farsi Text Styles */
+body .farsi {
+    display: none;
+    direction: rtl; /* Right-to-left text direction for Farsi */
+    text-align: right; /* Align text to the right */
+    font-family: 'Arabic Typesetting', Arial, sans-serif;
+    font-size: 24px; /* Larger font size for better readability */
+}
+
+/* English Text Styles */
+body .english {
+    text-align: left; /* Left-to-right text alignment for English */
 }
 
 /* Style for the entire form section */
