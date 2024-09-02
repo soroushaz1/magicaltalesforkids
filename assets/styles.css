@@ -73,10 +73,12 @@ footer {
     width: 100%;
     bottom: 0;
 }
+
+/* Corrected CSS for Farsi text */
 .farsi {
-    direction: rtl;
-    text-align: right;
-    font-family: 'Arabic Typesetting', Arial, sans-serif; /* Replace with a suitable Farsi font */
+    direction: rtl !important;
+    text-align: right !important;
+    font-family: 'Arabic Typesetting', Arial, sans-serif !important;
 }
 
 /* Style for the entire form section */
