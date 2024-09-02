@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Request a 3D Model - Magical Tales</title>
     <link rel="icon" href="assets/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="assets/styles.css">
-    
-    
 </head>
+
 <body>
     <header>
         <h1>
@@ -18,10 +18,13 @@
         <nav>
             <ul>
                 <li><a href="index.html" class="english">Home</a><a href="index.html" class="farsi">خانه</a></li>
-                <li><a href="services.html" class="english">Our Services</a><a href="services.html" class="farsi">خدمات ما</a></li>
-                <li><a href="order.html" class="english">Request a 3D Model</a><a href="order.html" class="farsi">درخواست مدل سه‌بعدی</a></li>
+                <li><a href="services.html" class="english">Our Services</a><a href="services.html" class="farsi">خدمات
+                        ما</a></li>
+                <li><a href="order.html" class="english">Request a 3D Model</a><a href="order.html"
+                        class="farsi">درخواست مدل سه‌بعدی</a></li>
                 <li><a href="about.html" class="english">About</a><a href="about.html" class="farsi">درباره ما</a></li>
-                <li><a href="contact.html" class="english">Contact</a><a href="contact.html" class="farsi">تماس با ما</a></li>
+                <li><a href="contact.html" class="english">Contact</a><a href="contact.html" class="farsi">تماس با
+                        ما</a></li>
             </ul>
         </nav>
         <button id="language-toggle">فارسی</button>
@@ -36,38 +39,48 @@
             <span class="english">Please fill out the form below to request a custom 3D model. Upload your reference images and provide a brief description of what you need.</span>
             <span class="farsi">.لطفاً فرم زیر را پر کنید تا یک مدل سه‌بعدی سفارشی درخواست کنید .تصاویر مرجع خود را بارگذاری کنید و توضیح مختصری از آنچه نیاز دارید ارائه دهید</span>
         </p>
-        
-        <form action="https://formspree.io/f/xvgpyonq" method="POST" enctype="multipart/form-data">
+    
+        <!-- Netlify Form with File Upload and Progress Bar -->
+        <form id="uploadForm" name="request-3d-model" method="POST" data-netlify="true" enctype="multipart/form-data">
+            <input type="hidden" name="form-name" value="request-3d-model">
+    
             <label for="name">
                 <span class="english">Name</span>
                 <span class="farsi">نام</span>
             </label>
             <input type="text" id="name" name="name" required>
-
+    
             <label for="email">
                 <span class="english">Email</span>
                 <span class="farsi">ایمیل</span>
             </label>
             <input type="email" id="email" name="email" required>
-
+    
             <label for="description">
                 <span class="english">Description</span>
                 <span class="farsi">توضیحات</span>
             </label>
             <textarea id="description" name="description" rows="5" required></textarea>
-
+    
             <label for="images">
                 <span class="english">Upload Reference Images</span>
                 <span class="farsi">بارگذاری تصاویر مرجع</span>
             </label>
             <input type="file" id="images" name="images" accept="image/*" multiple required>
-
+    
             <button type="submit">
                 <span class="english">Submit Request</span>
                 <span class="farsi">ارسال درخواست</span>
             </button>
         </form>
-    </section>
+    
+        <!-- Progress Bar -->
+        <div id="progressContainer" style="display:none;">
+            <p id="uploadStatus">Uploading...</p>
+            <progress id="uploadProgress" value="0" max="100"></progress>
+        </div>
+    </section>    
+
 
     <footer>
         <p>
@@ -77,7 +90,6 @@
     </footer>
 
     <script src="assets/app.js"></script>
-
-    
 </body>
+
 </html>
