@@ -58,6 +58,20 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script>
         $(document).ready(function () {
+            // Toggle language
+            $('#language-toggle').on('click', function () {
+                $('body').toggleClass('farsi');
+                var currentLang = $(this).text();
+                $(this).text(currentLang === 'فارسی' ? 'English' : 'فارسی');
+            });
+    
+            // Check initial language
+            if ($('body').hasClass('farsi')) {
+                $('#language-toggle').text('English');
+            } else {
+                $('#language-toggle').text('فارسی');
+            }
+    
             $('#uploadForm').on('submit', function () {
                 $('#progressContainer').show();
                 $('#uploadProgress').val(0);
@@ -65,5 +79,6 @@
             });
         });
     </script>
+    
 </body>
 </html>
