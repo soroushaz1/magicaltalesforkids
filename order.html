@@ -28,47 +28,26 @@
     </header>
 
     <section>
-        <h2>
-            <span class="english">Send Us Your Reference Images</span>
-            <span class="farsi">تصاویر مرجع خود را ارسال کنید</span>
-        </h2>
-        <p>
-            <span class="english">Please fill out the form below to request a custom 3D model. Upload your reference images and provide a brief description of what you need.</span>
-            <span class="farsi">لطفاً فرم زیر را پر کنید تا یک مدل سه‌بعدی سفارشی درخواست کنید. تصاویر مرجع خود را بارگذاری کنید و توضیح مختصری از آنچه نیاز دارید ارائه دهید.</span>
-        </p>
+        <h2>Send Us Your Reference Images</h2>
+        <p>Please fill out the form below to request a custom 3D model. Upload your reference images and provide a brief description of what you need.</p>
     
-        <!-- Netlify Form with File Upload and Progress Bar -->
-        <form id="uploadForm" name="request-3d-model" method="POST" data-netlify="true" enctype="multipart/form-data">
+        <!-- Form with File Upload and Progress Bar -->
+        <form id="uploadForm" name="request-3d-model" method="POST" enctype="multipart/form-data">
             <input type="hidden" name="form-name" value="request-3d-model">
     
-            <label for="name">
-                <span class="english">Name</span>
-                <span class="farsi">نام</span>
-            </label>
+            <label for="name">Name</label>
             <input type="text" id="name" name="name" required>
     
-            <label for="email">
-                <span class="english">Email</span>
-                <span class="farsi">ایمیل</span>
-            </label>
+            <label for="email">Email</label>
             <input type="email" id="email" name="email" required>
     
-            <label for="description">
-                <span class="english">Description</span>
-                <span class="farsi">توضیحات</span>
-            </label>
+            <label for="description">Description</label>
             <textarea id="description" name="description" rows="5" required></textarea>
     
-            <label for="images">
-                <span class="english">Upload Reference Images</span>
-                <span class="farsi">بارگذاری تصاویر مرجع</span>
-            </label>
+            <label for="images">Upload Reference Images</label>
             <input type="file" id="images" name="images" accept="image/*" multiple required>
     
-            <button type="submit">
-                <span class="english">Submit Request</span>
-                <span class="farsi">ارسال درخواست</span>
-            </button>
+            <button type="submit">Submit Request</button>
         </form>
     
         <!-- Progress Bar -->
@@ -77,6 +56,8 @@
             <progress id="uploadProgress" value="0" max="100"></progress>
         </div>
     </section>
+    
+    
     
 
     <footer>

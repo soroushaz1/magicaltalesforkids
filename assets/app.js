@@ -31,41 +31,52 @@ document.addEventListener('DOMContentLoaded', () => {
     setLanguage(savedLanguage);
 });
 
-// Event listener for the form submission to handle file upload and progress bar
-document.getElementById('uploadForm').addEventListener('submit', function(event) {
-    event.preventDefault(); // Prevent the default form submission
+document.addEventListener('DOMContentLoaded', function() {
+    const form = document.getElementById('uploadForm');
 
-    const form = event.target;
-    const formData = new FormData(form);
-    const xhr = new XMLHttpRequest();
+    if (form) {
+        form.addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent the default form submission
 
-    // Display the progress container
-    document.getElementById('progressContainer').style.display = 'block';
+            const formData = new FormData(form);
+            const xhr = new XMLHttpRequest();
 
-    // Update the progress bar as the file uploads
-    xhr.upload.addEventListener('progress', function(event) {
-        if (event.lengthComputable) {
-            const percentComplete = (event.loaded / event.total) * 100;
-            document.getElementById('uploadProgress').value = percentComplete;
-        }
-    });
+            // Display the progress container
+            const progressContainer = document.getElementById('progressContainer');
+            progressContainer.style.display = 'block';
 
-    // When the upload is complete
-    xhr.addEventListener('load', function() {
-        if (xhr.status === 200) {
-            document.getElementById('uploadStatus').textContent = 'Upload Complete!';
-        } else {
-            document.getElementById('uploadStatus').textContent = 'Upload Failed. Please try again.';
-        }
-    });
+            // Update the progress bar as the file uploads
+            xhr.upload.addEventListener('progress', function(event) {
+                if (event.lengthComputable) {
+                    const percentComplete = (event.loaded / event.total) * 100;
+                    console.log(`Upload Progress: ${percentComplete}%`); // Debugging line
+                    const progressBar = document.getElementById('uploadProgress');
+                    progressBar.value = percentComplete;
+                }
+            });
 
-    // Handle errors
-    xhr.addEventListener('error', function() {
-        document.getElementById('uploadStatus').textContent = 'Upload Failed. Please try again.';
-    });
+            // When the upload is complete
+            xhr.addEventListener('load', function() {
+                const uploadStatus = document.getElementById('uploadStatus');
+                if (xhr.status === 200) {
+                    uploadStatus.textContent = 'Upload Complete!';
+                } else {
+                    uploadStatus.textContent = 'Upload Failed. Please try again.';
+                }
+            });
 
-    // Prepare and send the request
-    xhr.open('POST', '/', true); // This should be correct for Netlify
-    xhr.setRequestHeader('Accept', 'application/json'); // Necessary for Netlify to process the form
-    xhr.send(formData);
+            // Handle errors
+            xhr.addEventListener('error', function() {
+                const uploadStatus = document.getElementById('uploadStatus');
+                uploadStatus.textContent = 'Upload Failed. Please try again.';
+            });
+
+            // Prepare and send the request
+            xhr.open('POST', '/', true);
+            xhr.setRequestHeader('Accept', 'application/json'); // Necessary for Netlify to process the form
+            xhr.send(formData);
+        });
+    } else {
+        console.error('Form not found!');
+    }
 });
