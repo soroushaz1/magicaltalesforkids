@@ -83,9 +83,25 @@ footer {
     bottom: 0;
 }
 
+/* Language Toggle Styles */
+.farsi .english {
+    display: none;
+}
+
+.farsi .farsi {
+    display: inline;
+}
+
+.english .farsi {
+    display: none;
+}
+
+.english .english {
+    display: inline;
+}
+
 /* Farsi Text Styles */
 body .farsi {
-    display: none;
     direction: rtl; /* Right-to-left text direction for Farsi */
     text-align: right; /* Align text to the right */
     font-family: 'Arabic Typesetting', Arial, sans-serif;
