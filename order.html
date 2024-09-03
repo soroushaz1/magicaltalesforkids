@@ -7,7 +7,7 @@
     <link rel="icon" href="assets/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="assets/styles.css">
 </head>
-<body>
+<body class="english">
     <header>
         <h1>
             <span class="english">Request a 3D Model</span>
@@ -26,20 +26,31 @@
     </header>
 
     <section>
-        <h2>Send Us Your Reference Images</h2>
-        <p>Please fill out the form below to request a custom 3D model. Upload your reference images and provide a brief description of what you need.</p>
+        <h2>
+            <span class="english">Send Us Your Reference Images</span>
+            <span class="farsi">تصاویر مرجع خود را برای ما ارسال کنید</span>
+        </h2>
+        <p>
+            <span class="english">Please fill out the form below to request a custom 3D model. Upload your reference images and provide a brief description of what you need.</span>
+            <span class="farsi">لطفاً فرم زیر را پر کنید تا یک مدل سه‌بعدی سفارشی درخواست کنید. تصاویر مرجع خود را آپلود کنید و توضیح مختصری از آنچه نیاز دارید ارائه دهید.</span>
+        </p>
 
         <form id="uploadForm" name="request-3d-model" method="POST" enctype="multipart/form-data" data-netlify="true">
             <input type="hidden" name="form-name" value="request-3d-model">
-            <label for="name">Name</label>
+            <label for="name" class="english">Name</label>
+            <label for="name" class="farsi">نام</label>
             <input type="text" id="name" name="name" required>
-            <label for="email">Email</label>
+            <label for="email" class="english">Email</label>
+            <label for="email" class="farsi">ایمیل</label>
             <input type="email" id="email" name="email" required>
-            <label for="description">Description</label>
+            <label for="description" class="english">Description</label>
+            <label for="description" class="farsi">توضیحات</label>
             <textarea id="description" name="description" rows="5" required></textarea>
-            <label for="images">Upload Reference Images</label>
+            <label for="images" class="english">Upload Reference Images</label>
+            <label for="images" class="farsi">آپلود تصاویر مرجع</label>
             <input type="file" id="images" name="images" accept="image/*" multiple required>
-            <button type="submit">Submit Request</button>
+            <button type="submit" class="english">Submit Request</button>
+            <button type="submit" class="farsi">ارسال درخواست</button>
         </form>
 
         <div id="progressContainer" style="display:none;">
@@ -60,18 +71,18 @@
         $(document).ready(function () {
             // Toggle language
             $('#language-toggle').on('click', function () {
-                $('body').toggleClass('farsi');
+                $('body').toggleClass('farsi english');
                 var currentLang = $(this).text();
                 $(this).text(currentLang === 'فارسی' ? 'English' : 'فارسی');
             });
-    
+
             // Check initial language
             if ($('body').hasClass('farsi')) {
                 $('#language-toggle').text('English');
             } else {
                 $('#language-toggle').text('فارسی');
             }
-    
+
             $('#uploadForm').on('submit', function () {
                 $('#progressContainer').show();
                 $('#uploadProgress').val(0);
@@ -79,6 +90,5 @@
             });
         });
     </script>
-    
 </body>
 </html>
