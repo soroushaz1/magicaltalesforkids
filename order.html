@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="assets/styles.css">
 </head>
 
-<body class="english">
+<body class="farsi">
     <header>
         <h1>
             <span class="english">Request a 3D Model</span>
@@ -76,29 +76,38 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script>
         $(document).ready(function () {
-            // Check and apply the saved language preference
-            if (localStorage.getItem('language') === 'farsi') {
-                $('body').addClass('farsi').removeClass('english');
-                $('#language-toggle').text('English');
-            } else {
-                $('body').addClass('english').removeClass('farsi');
-                $('#language-toggle').text('فارسی');
+            // Function to set the language based on the user's preference
+            function setLanguage(language) {
+                const englishTexts = document.querySelectorAll('.english');
+                const farsiTexts = document.querySelectorAll('.farsi');
+                const toggleButton = document.getElementById('language-toggle');
+
+                if (language === 'farsi') {
+                    englishTexts.forEach(text => text.style.display = 'none');
+                    farsiTexts.forEach(text => text.style.display = 'inline');
+                    toggleButton.textContent = 'English';
+                } else {
+                    englishTexts.forEach(text => text.style.display = 'inline');
+                    farsiTexts.forEach(text => text.style.display = 'none');
+                    toggleButton.textContent = 'فارسی';
+                }
+
+                // Save the preference in localStorage
+                localStorage.setItem('preferredLanguage', language);
             }
 
-            // Toggle language and save preference
-            $('#language-toggle').on('click', function () {
-                $('body').toggleClass('farsi english');
-                var currentLang = $(this).text();
-                $(this).text(currentLang === 'فارسی' ? 'English' : 'فارسی');
-
-                // Save language preference
-                if ($('body').hasClass('farsi')) {
-                    localStorage.setItem('language', 'farsi');
-                } else {
-                    localStorage.setItem('language', 'english');
-                }
+            // Event listener for the toggle button
+            document.getElementById('language-toggle').addEventListener('click', () => {
+                const currentLanguage = localStorage.getItem('preferredLanguage') || 'english';
+                const newLanguage = currentLanguage === 'english' ? 'farsi' : 'english';
+                setLanguage(newLanguage);
             });
+
+            // On page load, apply the saved language preference or default to English
+            const savedLanguage = localStorage.getItem('preferredLanguage') || 'english';
+            setLanguage(savedLanguage);
         });
+
 
     </script>
 </body>
