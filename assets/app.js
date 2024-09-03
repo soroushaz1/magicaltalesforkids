@@ -65,7 +65,7 @@ document.getElementById('uploadForm').addEventListener('submit', function(event)
     });
 
     // Prepare and send the request
-    xhr.open('POST', '/', true); // The form action should be pointing to the correct endpoint
-    xhr.setRequestHeader('Accept', 'application/json'); // Necessary to handle the Netlify form submission
+    xhr.open('POST', '/', true); // This should be correct for Netlify
+    xhr.setRequestHeader('Accept', 'application/json'); // Necessary for Netlify to process the form
     xhr.send(formData);
 });
