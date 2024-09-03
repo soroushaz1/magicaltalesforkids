@@ -31,20 +31,37 @@ document.addEventListener('DOMContentLoaded', () => {
     setLanguage(savedLanguage);
 });
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     const form = document.getElementById('uploadForm');
+    const uploadButton = document.querySelector('button[type="submit"]');
 
-    if (form) {
-        form.addEventListener('submit', function(event) {
-            event.preventDefault(); // Prevent the default form submission
+    console.log("DOM fully loaded and parsed");
 
+    if (form && uploadButton) {
+        console.log("Form and upload button found!");
+
+        uploadButton.addEventListener('click', function(event) {
+            alert("Button clicked!");  // Corrected from 'lert' to 'alert'
+            event.preventDefault();
+            console.log("Upload button clicked");
+        
+            const fileInput = document.getElementById('images');
+            if (fileInput.files.length > 0) {
+                console.log("Files selected:", fileInput.files);
+                alert("Files selected: " + fileInput.files.length);
+            } else {
+                console.log("No file selected");
+                alert("No file selected");
+                return; // Stop if no files are selected
+            }
+        
             const formData = new FormData(form);
             const xhr = new XMLHttpRequest();
-
+        
             // Display the progress container
             const progressContainer = document.getElementById('progressContainer');
             progressContainer.style.display = 'block';
-
+        
             // Update the progress bar as the file uploads
             xhr.upload.addEventListener('progress', function(event) {
                 if (event.lengthComputable) {
@@ -54,30 +71,34 @@ document.addEventListener('DOMContentLoaded', function() {
                     progressBar.value = percentComplete;
                 }
             });
-
+        
             // When the upload is complete
             xhr.addEventListener('load', function() {
                 const uploadStatus = document.getElementById('uploadStatus');
                 if (xhr.status >= 200 && xhr.status < 300) {
                     uploadStatus.textContent = 'Upload Complete!';
-                    form.reset(); // Reset the form after successful upload
+                    form.reset();
                 } else {
                     uploadStatus.textContent = 'Upload Failed. Please try again.';
                 }
+                console.log("Upload finished with status:", xhr.status);
             });
-
+        
             // Handle errors
             xhr.addEventListener('error', function() {
                 const uploadStatus = document.getElementById('uploadStatus');
                 uploadStatus.textContent = 'Upload Failed. Please try again.';
+                console.error("Upload error occurred.");
             });
-
+        
             // Prepare and send the request
             xhr.open('POST', '/', true);
             xhr.setRequestHeader('Accept', 'application/json');
             xhr.send(formData);
         });
+        
     } else {
-        console.error('Form not found!');
+        console.error('Form or upload button not found!');
     }
 });
+
