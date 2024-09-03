@@ -58,7 +58,7 @@ document.addEventListener('DOMContentLoaded', function() {
             // When the upload is complete
             xhr.addEventListener('load', function() {
                 const uploadStatus = document.getElementById('uploadStatus');
-                if (xhr.status === 200) {
+                if (xhr.status >= 200 && xhr.status < 300) {
                     uploadStatus.textContent = 'Upload Complete!';
                     form.reset(); // Reset the form after successful upload
                 } else {
@@ -73,7 +73,7 @@ document.addEventListener('DOMContentLoaded', function() {
             });
 
             // Prepare and send the request
-            xhr.open('POST', form.action);
+            xhr.open('POST', form.action || '/', true);
             xhr.setRequestHeader('Accept', 'application/json');
             xhr.send(formData);
         });
