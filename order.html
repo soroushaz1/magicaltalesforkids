@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,6 +8,7 @@
     <link rel="icon" href="assets/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="assets/styles.css">
 </head>
+
 <body class="english">
     <header>
         <h1>
@@ -16,10 +18,13 @@
         <nav>
             <ul>
                 <li><a href="index.html" class="english">Home</a><a href="index.html" class="farsi">خانه</a></li>
-                <li><a href="services.html" class="english">Our Services</a><a href="services.html" class="farsi">خدمات ما</a></li>
-                <li><a href="order.html" class="english">Request a 3D Model</a><a href="order.html" class="farsi">درخواست مدل سه‌بعدی</a></li>
+                <li><a href="services.html" class="english">Our Services</a><a href="services.html" class="farsi">خدمات
+                        ما</a></li>
+                <li><a href="order.html" class="english">Request a 3D Model</a><a href="order.html"
+                        class="farsi">درخواست مدل سه‌بعدی</a></li>
                 <li><a href="about.html" class="english">About</a><a href="about.html" class="farsi">درباره ما</a></li>
-                <li><a href="contact.html" class="english">Contact</a><a href="contact.html" class="farsi">تماس با ما</a></li>
+                <li><a href="contact.html" class="english">Contact</a><a href="contact.html" class="farsi">تماس با
+                        ما</a></li>
             </ul>
         </nav>
         <button id="language-toggle">فارسی</button>
@@ -31,8 +36,10 @@
             <span class="farsi">تصاویر مرجع خود را برای ما ارسال کنید</span>
         </h2>
         <p>
-            <span class="english">Please fill out the form below to request a custom 3D model. Upload your reference images and provide a brief description of what you need.</span>
-            <span class="farsi">لطفاً فرم زیر را پر کنید تا یک مدل سه‌بعدی سفارشی درخواست کنید. تصاویر مرجع خود را آپلود کنید و توضیح مختصری از آنچه نیاز دارید ارائه دهید.</span>
+            <span class="english">Please fill out the form below to request a custom 3D model. Upload your reference
+                images and provide a brief description of what you need.</span>
+            <span class="farsi">لطفاً فرم زیر را پر کنید تا یک مدل سه‌بعدی سفارشی درخواست کنید. تصاویر مرجع خود را آپلود
+                کنید و توضیح مختصری از آنچه نیاز دارید ارائه دهید.</span>
         </p>
 
         <form id="uploadForm" name="request-3d-model" method="POST" enctype="multipart/form-data" data-netlify="true">
@@ -69,26 +76,31 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script>
         $(document).ready(function () {
-            // Toggle language
+            // Check and apply the saved language preference
+            if (localStorage.getItem('language') === 'farsi') {
+                $('body').addClass('farsi').removeClass('english');
+                $('#language-toggle').text('English');
+            } else {
+                $('body').addClass('english').removeClass('farsi');
+                $('#language-toggle').text('فارسی');
+            }
+
+            // Toggle language and save preference
             $('#language-toggle').on('click', function () {
                 $('body').toggleClass('farsi english');
                 var currentLang = $(this).text();
                 $(this).text(currentLang === 'فارسی' ? 'English' : 'فارسی');
-            });
 
-            // Check initial language
-            if ($('body').hasClass('farsi')) {
-                $('#language-toggle').text('English');
-            } else {
-                $('#language-toggle').text('فارسی');
-            }
-
-            $('#uploadForm').on('submit', function () {
-                $('#progressContainer').show();
-                $('#uploadProgress').val(0);
-                $('#uploadStatus').text('Uploading...');
+                // Save language preference
+                if ($('body').hasClass('farsi')) {
+                    localStorage.setItem('language', 'farsi');
+                } else {
+                    localStorage.setItem('language', 'english');
+                }
             });
         });
+
     </script>
 </body>
+
 </html>
