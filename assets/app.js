@@ -49,7 +49,7 @@ document.addEventListener('DOMContentLoaded', function() {
             xhr.upload.addEventListener('progress', function(event) {
                 if (event.lengthComputable) {
                     const percentComplete = (event.loaded / event.total) * 100;
-                    console.log(`Upload Progress: ${percentComplete}%`); // Debugging line
+                    console.log(`Upload Progress: ${percentComplete}%`);
                     const progressBar = document.getElementById('uploadProgress');
                     progressBar.value = percentComplete;
                 }
@@ -60,6 +60,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 const uploadStatus = document.getElementById('uploadStatus');
                 if (xhr.status === 200) {
                     uploadStatus.textContent = 'Upload Complete!';
+                    form.reset(); // Reset the form after successful upload
                 } else {
                     uploadStatus.textContent = 'Upload Failed. Please try again.';
                 }
@@ -72,8 +73,8 @@ document.addEventListener('DOMContentLoaded', function() {
             });
 
             // Prepare and send the request
-            xhr.open('POST', '/', true);
-            xhr.setRequestHeader('Accept', 'application/json'); // Necessary for Netlify to process the form
+            xhr.open('POST', form.action);
+            xhr.setRequestHeader('Accept', 'application/json');
             xhr.send(formData);
         });
     } else {
