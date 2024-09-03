@@ -52,7 +52,11 @@ document.getElementById('uploadForm').addEventListener('submit', function(event)
 
     // When the upload is complete
     xhr.addEventListener('load', function() {
-        document.getElementById('uploadStatus').textContent = 'Upload Complete!';
+        if (xhr.status === 200) {
+            document.getElementById('uploadStatus').textContent = 'Upload Complete!';
+        } else {
+            document.getElementById('uploadStatus').textContent = 'Upload Failed. Please try again.';
+        }
     });
 
     // Handle errors
@@ -61,6 +65,7 @@ document.getElementById('uploadForm').addEventListener('submit', function(event)
     });
 
     // Prepare and send the request
-    xhr.open('POST', form.action);
+    xhr.open('POST', '/', true); // The form action should be pointing to the correct endpoint
+    xhr.setRequestHeader('Accept', 'application/json'); // Necessary to handle the Netlify form submission
     xhr.send(formData);
 });
