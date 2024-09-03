@@ -73,7 +73,7 @@ document.addEventListener('DOMContentLoaded', function() {
             });
 
             // Prepare and send the request
-            xhr.open('POST', form.action || '/', true);
+            xhr.open('POST', '/', true);
             xhr.setRequestHeader('Accept', 'application/json');
             xhr.send(formData);
         });
