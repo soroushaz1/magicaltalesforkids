@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,6 +8,7 @@
     <link rel="icon" href="assets/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="assets/styles.css">
 </head>
+
 <body>
     <header>
         <h1>
@@ -16,10 +18,13 @@
         <nav>
             <ul>
                 <li><a href="index.html" class="english">Home</a><a href="index.html" class="farsi">خانه</a></li>
-                <li><a href="services.html" class="english">Our Services</a><a href="services.html" class="farsi">خدمات ما</a></li>
-                <li><a href="order.html" class="english">Request a 3D Model</a><a href="order.html" class="farsi">درخواست مدل سه‌بعدی</a></li>
+                <li><a href="services.html" class="english">Our Services</a><a href="services.html" class="farsi">خدمات
+                        ما</a></li>
+                <li><a href="order.html" class="english">Request a 3D Model</a><a href="order.html"
+                        class="farsi">درخواست مدل سه‌بعدی</a></li>
                 <li><a href="about.html" class="english">About</a><a href="about.html" class="farsi">درباره ما</a></li>
-                <li><a href="contact.html" class="english">Contact</a><a href="contact.html" class="farsi">تماس با ما</a></li>
+                <li><a href="contact.html" class="english">Contact</a><a href="contact.html" class="farsi">تماس با
+                        ما</a></li>
             </ul>
         </nav>
         <button id="language-toggle">فارسی</button>
@@ -27,7 +32,8 @@
 
     <section>
         <h2>Send Us Your Reference Images</h2>
-        <p>Please fill out the form below to request a custom 3D model. Upload your reference images and provide a brief description of what you need.</p>
+        <p>Please fill out the form below to request a custom 3D model. Upload your reference images and provide a brief
+            description of what you need.</p>
 
         <form id="uploadForm" name="request-3d-model" method="POST" enctype="multipart/form-data">
             <input type="hidden" name="form-name" value="request-3d-model">
@@ -57,16 +63,17 @@
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script>
-        $(document).ready(function(){
-            $('#uploadForm').on('submit', function(event){
+        $(document).ready(function () {
+            $('#uploadForm').on('submit', function (event) {
                 event.preventDefault();
                 var formData = new FormData(this);
                 $.ajax({
-                    xhr: function() {
+                    xhr: function () {
                         var xhr = new window.XMLHttpRequest();
-                        xhr.upload.addEventListener('progress', function(evt) {
+                        xhr.upload.addEventListener('progress', function (evt) {
                             if (evt.lengthComputable) {
                                 var percentComplete = evt.loaded / evt.total * 100;
+                                console.log('Progress:', percentComplete);  // Debug line
                                 $('#uploadProgress').val(percentComplete);
                                 $('#uploadStatus').text('Uploading... ' + Math.round(percentComplete) + '%');
                             }
@@ -78,22 +85,25 @@
                     data: formData,
                     contentType: false,
                     processData: false,
-                    beforeSend: function(){
+                    beforeSend: function () {
+                        console.log('Upload started');  // Debug line
                         $('#progressContainer').show();
                         $('#uploadProgress').val(0);
                         $('#uploadStatus').text('Uploading...');
                     },
-                    success: function(data){
+                    success: function (data) {
                         alert('File uploaded successfully!');
                         $('#progressContainer').hide();
                     },
-                    error: function(){
+                    error: function () {
                         alert('File upload failed.');
                         $('#progressContainer').hide();
                     }
                 });
             });
         });
+
     </script>
 </body>
+
 </html>
